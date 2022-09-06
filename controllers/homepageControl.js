@@ -6,14 +6,12 @@ router.get('/', (req, res) => {
     console.log(req.session);
     Forum.findAll({
         attributes: ['id', 'title', 'date_created', 'forum_content'],
-        include: [{ model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] }]
+        include: [{ model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], 
+        include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] }]
     })
         .then(dbForumData => {
             const forums = dbForumData.map(forum => forum.get({ plain: true }));
-            res.render('homepage', {
-                forums,
-                loggedIn: req.sessionID.loggedIn
-            });
+            res.render('homepage', { forums, loggedIn: req.sessionID.loggedIn });
         })
         .catch(err => { if (err) throw err;  res.status(500).json(err);
         });
