@@ -4,7 +4,6 @@ const { Forum, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
     console.log(req.session);
-
     Forum.findAll({
         attributes: ['id', 'title', 'date_created', 'forum_content'],
         include: [{ model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] }]
@@ -37,9 +36,7 @@ router.get('/signup', (req, res) => {
 
 router.get('/forum/:id', (req, res) => {
     Forum.findOne({
-        where: {
-            id: req.params.id
-        },
+        where: { id: req.params.id },
         attributes: [
             'id',
             'title',
