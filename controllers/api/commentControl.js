@@ -25,7 +25,7 @@ router.delete('/:id', wAuth, (req, res) => {
         where: { id: req.params.id }
     })
     .then(dbCommentData => {
-        if (!dbCommentData) { res.status(404).json({ message: 'no comment'});return; }
+        if (!dbCommentData) { res.status(404).json({ message: 'no comment' }); return; }
         res.json(dbCommentData);
     })
     .catch( err => { if (err) throw err; res.status(500).json(err);
