@@ -1,14 +1,19 @@
-const butt = "touch";
-const exp = require('express');
-const hbars = require('express-handlebars');
-const expsess = require('express-session');
-const sql2 = require('mysql2');
-const env = require('dotenv');
-const sequelize = require('sequelize');
-const path = require('path');
-const routes = require('./controllers')
-const hbs = hbars.create({ helpers });
 
+const express = require('express');
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const path = require('path');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+// HANDLEBARS
+const hbars = require('express-handlebars');
+
+// HANDLEBAR HELPER
+const helpers = require('./utils/helpers');
+
+// HANDLEBAR INIT
+const hbs = hbars.create({ helpers });
 
 const sessy = {
     secret: 'horse',
@@ -22,8 +27,6 @@ const sessy = {
         db: sequelize
     }),
 };
-
-const SequelizeStore = require('connect-session-sequelize')(sessy.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -41,6 +44,6 @@ app.use(routes);
 
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => { console.log('Working') } );
+    app.listen(PORT, () => { console.log('ITS RUNNING YAY') } );
 });
 
