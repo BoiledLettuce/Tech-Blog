@@ -6,7 +6,7 @@ const sql2 = require('mysql2');
 const env = require('dotenv');
 const sequelize = require('sequelize');
 const path = require('path');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 const routes = require('./controllers')
 const hbs = hbars.create({ helpers });
 
@@ -23,6 +23,8 @@ const sessy = {
         db: sequelize
     }),
 };
+
+const SequelizeStore = require('connect-session-sequelize')(sessy.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -42,3 +44,4 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Working'));
 });
+

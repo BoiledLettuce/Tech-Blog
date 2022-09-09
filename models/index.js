@@ -1,6 +1,7 @@
 const Forum = require('./Forum');
 const User = require('./User');
-const Comment = require('./Comment');
+const sequelize = require('sequelize');
+const Comment = require('./Comment'); 
 
 User.hasMany(Forum, { foreignKey: 'user_id' } );
 User.hasMany(Comment, { foreignKey: 'user_id' } );
