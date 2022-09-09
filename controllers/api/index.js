@@ -8,3 +8,4 @@ router.use('/comments', commentRoute);
 router.use('/forums', forumRoute);
 router.use('/users', userRoute);
 
+module.exports = router;

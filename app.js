@@ -6,7 +6,6 @@ const sql2 = require('mysql2');
 const env = require('dotenv');
 const sequelize = require('sequelize');
 const path = require('path');
-
 const routes = require('./controllers')
 const hbs = hbars.create({ helpers });
 
@@ -42,6 +41,6 @@ app.use(routes);
 
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Working'));
+    app.listen(PORT, () => { console.log('Working') } );
 });
 
