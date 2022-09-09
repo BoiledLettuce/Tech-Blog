@@ -5,8 +5,8 @@ const { Forum, User, Comment } = require('../models');
 router.get('/', (req, res) => {
     Forum.findAll({
       where: { user_id: req.session.user_id },
-      attributes: [ 'id', 'title', 'date_created', 'forum_content' ],
-      include: [ { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], 
+      attributes: [ 'id', 'title', 'created_at', 'forum_content' ],
+      include: [ { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'created_at'], 
       include: { model: User, attributes: [ 'username' ] } },  { model: User, attributes: ['username'] } ]
     })
       .then(dbForumData => { const Forums = dbForumData.map(Forum => Forum.get({ plain: true }));
@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
   router.get('/edit/:id', (req, res) => {
     Forum.findOne({
       where: { id: req.params.id },
-      attributes: [ 'id', 'title', 'date_created', 'forum_content' ],
-      include: [ {  model: Comment, attributes: ['id', 'comment_text', 'forum_id', 'user_id', 'date_created'],
+      attributes: [ 'id', 'title', 'created_at', 'forum_content' ],
+      include: [ {  model: Comment, attributes: ['id', 'comment_text', 'forum_id', 'user_id', 'created_at'],
       include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] } ]
     })
       .then(dbForumData => {
@@ -39,8 +39,8 @@ router.get('/', (req, res) => {
 router.get('/create/', (req, res) => {
   Forum.findAll({
     where: { user_id: req.session.user_id },
-    attributes: [ 'id', 'title', 'date_created', 'forum_content' ],
-    include: [ {  model: Comment, attributes: ['id', 'comment_text', 'Forum_id', 'user_id', 'date_created'],
+    attributes: [ 'id', 'title', 'created_at', 'forum_content' ],
+    include: [ {  model: Comment, attributes: ['id', 'comment_text', 'Forum_id', 'user_id', 'created_at'],
     include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] } ]
   })
     .then(dbForumData => {

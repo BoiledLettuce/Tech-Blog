@@ -5,8 +5,8 @@ const { Forum, User, Comment } = require('../models');
 router.get('/', (req, res) => {
     console.log(req.session);
     Forum.findAll({
-        attributes: ['id', 'title', 'date_created', 'forum_content'],
-        include: [{ model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], 
+        attributes: ['id', 'title', 'created_at', 'forum_content'],
+        include: [{ model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'created_at'], 
         include: { model: User, attributes: ['username'] } }, { model: User, attributes: ['username'] }]
     })
         .then(dbForumData => {
@@ -38,13 +38,13 @@ router.get('/forum/:id', (req, res) => {
         attributes: [
             'id',
             'title',
-            'date_created',
+            'created_at',
             'comment_content'
         ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'],
+                attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']

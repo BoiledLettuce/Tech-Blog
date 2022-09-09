@@ -4,24 +4,24 @@ const wAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     Forum.findAll({
-        attributes: [ 'id', 'title', 'date_created', 'forum_content' ],
-        order: [['date_created']],
-        include: [ { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'], include: { model: User, attributes: [ 'username' ] } },
+        attributes: [ 'id', 'title', 'created_at', 'forum_content' ],
+        order: [['created_at', 'DESC']],
+        include: [ { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'created_at'], include: { model: User, attributes: [ 'username' ] } },
             { model: User, attributes: ['username'] }, ]
     })
     .then(dbForumData => res.json(dbForumData))
-    .catch(err => { if (err) throw err; res.status(500).json(err);
+    .catch(err => { console.log(err); res.status(404).json(err);
     });
 });
 
 router.get('/:id', (req, res) => {
     Forum.findOne({
         where: { id: req.params.id },
-        attributes: [ 'id', 'title','date_created', 'forum_content' ],
-        include: [ {  model: User,  attributes: ['username'] }, { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'date_created'],
+        attributes: [ 'id', 'title','created_at', 'forum_content' ],
+        include: [ {  model: User,  attributes: ['username'] }, { model: Comment, attributes: ['id', 'comment_content', 'forum_id', 'user_id', 'created_at'],
         include: { model: User, attributes: ['username'] } } ]
     })
-    .then(dbAlbumData => {
+    .then(dbForumData => {
         if (!dbForumData) { res.status(404).json({ message: 'forum does not exist'}); return; }
         res.json(dbForumData);
     })

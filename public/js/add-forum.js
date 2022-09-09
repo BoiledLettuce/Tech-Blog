@@ -8,7 +8,8 @@ async function newForumHandler(event) {
         method: 'POST',
         body: JSON.stringify({
             title,
-            forum_content
+            forum_content,
+            date_created
         }),
         headers: {
             'Content-type': 'application/json'

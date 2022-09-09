@@ -20,13 +20,13 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Forum,
-                attributes: ['id', 'title', 'forum_content', 'date_created']
+                attributes: ['id', 'title', 'forum_content', 'created_at']
             },
             {
                 model: Comment,
-                attributes: ['id', 'comment_content', 'date_created'],
+                attributes: ['id', 'comment_content', 'created_at'],
                 include: {
-                    model: Album,
+                    model: Forum,
                     attributes: ['title']
                 }
             }
