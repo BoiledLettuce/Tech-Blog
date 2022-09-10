@@ -4,7 +4,8 @@ const wAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     User.findAll({
-        attributes: { exclude: ['password'] }
+        // attributes: { exclude: ['password'] }
+        attributes: [ 'id', 'username', 'email', 'password', 'user_id']
     })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -15,7 +16,8 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     User.findOne({
-        attributes: { exclude: ['password'] },
+        // attributes: { exclude: ['password'] },
+        attributes: [ 'id', 'username', 'email', 'password', 'user_id'],
         where: { id: req.params.id },
         include: [
             {
@@ -44,7 +46,7 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-
+// HOW TO MAKE SIGNUP GO HERE
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
