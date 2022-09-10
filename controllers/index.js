@@ -6,7 +6,7 @@ const dashboardControl = require('./dashboardControl.js');
 
 
 router.use('/api', apiRoutes);
-router.use('/homepage', homepageControl);
+router.use('/', homepageControl);
 router.use('/dashboard', dashboardControl);
 router.use((req, res) => { res.send("<h1>SPECIFY A ROUTE</h1>") });
 

@@ -1,0 +1,19 @@
+<div>
+    <a href="/dashboard/create"><button id="create-forum">create forum</button></a>
+
+    <h2 class="">dhasboard: your forum posts</h2>
+    <hr>
+    {{#if posts.length}}
+</div>
+
+{{#each forum as |forum|}}
+{{> post-info post}}
+
+<a href="/dashboard/edit/{{forum.id}}"><button class="button">edit post</button></a>
+</div>
+{{/each}}
+
+{{else}}
+<h6>you don't have forums</h6>
+
+{{/if}}
