@@ -26,9 +26,10 @@
 * In your browser to URL : `localhost:3001`.
 * Routes to use: `http://localhost:3001/api/users`, `/api/forums`, `/api/comments`.
 * You should see: 
+
 ![Preview Image](./Assets/Preview.JPG)
 
-* [Deployed Application]('')
+* [Deployed Application](https://mysterious-escarpment-12213.herokuapp.com/)
 
 ## Features
 
