@@ -25,7 +25,8 @@
 * Then use `npm run watch` to test the server using nodemon.
 * In your browser to URL : `localhost:3001`.
 * Routes to use: `http://localhost:3001/api/users`, `/api/forums`, `/api/comments`.
-* You should see: ![Preview Image](./Assets/Preview.JPG)
+* You should see: 
+![Preview Image](./Assets/Preview.JPG)
 
 * [Deployed Application]('')
 
