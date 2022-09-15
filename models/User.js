@@ -16,14 +16,15 @@ User.init(
 
         password: { type: DataTypes.STRING, allowNull: false },
 
-        user_id: { type: DataTypes.INTEGER, allowNull: true, references: { model: 'users', key: 'id' } }
+        user_id: { type: DataTypes.INTEGER, allowNull: true}  
+        // references: { model: 'users', key: 'id' } }
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'users', //???????????????
+        modelName: 'user', //???????????????
     }
 );
 
